@@ -7,8 +7,7 @@ import eventTypes from '../assets/data/data'
 
 const API = 'https://raw.githubusercontent.com/tech-conferences/conference-data/master/conferences/2019/';
 const DEFAULT_QUERY = 'android.json';
-const MY_LOCATION = 'San Francisco'
-const GOOGLE_KEY = 'AIzaSyAQ3LdY61bLSU95-gu_6EQ25bobZ2B5peo'
+const MY_LOCATION = 'Morocco'
 const FETCH_GOOGLE_API = false
 
 export default class HomeScreen extends React.Component {
