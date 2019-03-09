@@ -1,13 +1,33 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Button } from 'react-native';
+import Geocoder from 'react-native-geocoding';
+
 
 class FilterButtons extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            records: [],
+            user_city: null,
+            user_latitude: null,
+            user_longitude: null,
+        };
     }
 
     filterBy(type) {
-        console.log("hello " + type);
+        console.log("filtering");
+        switch (type) {
+            case 'location': {
+                console.log("by location");
+                const newData = this.state.records.filter(item => {
+                    const itemData = `${item.name.toUpperCase()} ${item.city.toUpperCase()} `;
+                    const textData = this.state.user_city.toUpperCase();
+                    return itemData.indexOf(textData) > -1;
+                });
+                this.setState({ records: newData });
+            }
+        }
+
     }
 
     render() {

@@ -7,7 +7,7 @@ import eventTypes from '../assets/data/data'
 
 const API = 'https://raw.githubusercontent.com/tech-conferences/conference-data/master/conferences/2019/';
 const DEFAULT_QUERY = 'android.json';
-const MY_LOCATION = 'Morocco'
+const MY_LOCATION = 'San Francisco'
 const FETCH_GOOGLE_API = false
 
 export default class HomeScreen extends React.Component {
@@ -48,8 +48,9 @@ export default class HomeScreen extends React.Component {
                     this.manageData(data);
                 })
                 .catch(error => {
-                    this.setState({ error, isLoading: false });
+                    this.setState({ error: error, isLoading: false });
                 });
+            console.log("Is loading: ", this.state.isLoading)
         })
 
         this.setState({ isLoading: false });
@@ -76,10 +77,6 @@ export default class HomeScreen extends React.Component {
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
         );
     }
-
-    updateSearch = search => {
-        this.setState({ search });
-    };
 
     searchFilterFunction = text => {
         const newData = this.arrayholder.filter(item => {
@@ -119,7 +116,7 @@ export default class HomeScreen extends React.Component {
                     onChangeText={text => this.searchFilterFunction(text)}
                     autoCorrect={false}
                 />
-                <FilterButtons></FilterButtons>
+                <FilterButtons records={this.state.event} user_city="San Francisco" user_latitude={this.state.latitude} user_longitude={this.state.longitude}></FilterButtons>
                 <Text>longitude:{this.state.longitude}</Text>
                 <Text>longitude:{this.state.latitude}</Text>
                 <ScrollView contentContainerStyle={styles.contentContainer}>
